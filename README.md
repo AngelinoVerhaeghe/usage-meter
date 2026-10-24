@@ -93,7 +93,7 @@ Code map:
 ## Release an update
 
 1. `node scripts/bump.mjs 0.1.1`
-2. Commit, then `git tag v0.1.1 && git push --follow-tags`
+2. Commit, then `git tag v0.1.1 && git push && git push origin v0.1.1`
 3. GitHub Actions builds Mac (universal) and Windows, signs the update files
    and publishes the release with `latest.json`. Installed apps check every
    6 hours and on start, download in the background and offer a restart.
