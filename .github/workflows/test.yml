@@ -1,0 +1,56 @@
+# On every push and pull request: type-check the UI, lint and test the Rust
+# code, and start the app once in --print mode on macOS and Windows. Without
+# logins on the runner it reports "not connected", which proves the binary
+# starts and finds its paths on both systems.
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [macos-latest, windows-latest]
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: stable
+          components: clippy
+
+      - uses: swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
+        with:
+          workspaces: src-tauri
+
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npm run build
+
+      - name: Clippy
+        working-directory: src-tauri
+        run: cargo clippy --all-targets -- -D warnings
+
+      - name: Unit tests
+        working-directory: src-tauri
+        run: cargo test
+
+      - name: Start once (--print)
+        working-directory: src-tauri
+        shell: bash
+        run: |
+          cargo run --quiet -- --print | tee print.json
+          grep -q '"claude"' print.json && grep -q '"chatgpt"' print.json
