@@ -1,0 +1,35 @@
+name: Bug report
+description: Something shows the wrong numbers, crashes or doesn't install
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you saw, and what you expected instead. A screenshot helps.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Usage Meter version
+      description: Shown at the bottom of Settings.
+      placeholder: "0.1.1"
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Computer
+      options: [Mac, Windows]
+    validations:
+      required: true
+  - type: textarea
+    id: print
+    attributes:
+      label: Output of --print (optional)
+      description: |
+        Mac: `"/Applications/Usage Meter.app/Contents/MacOS/usage-meter" --print`
+        Windows: `& "$env:LOCALAPPDATA\Usage Meter\usage-meter.exe" --print`
+        It holds usage numbers and model names only, no logins. Remove anything you'd rather not share.
+      render: json

@@ -106,3 +106,12 @@ One-time setup for the repo:
   Keep a backup of that key: without it, installed apps can't receive updates.
 - If the repo isn't `nealwebdev/usage-meter`, change the updater URL in
   `src-tauri/tauri.conf.json` and the repo name in both install scripts.
+
+## Contributing
+
+Pull requests are welcome: see [CONTRIBUTING.md](CONTRIBUTING.md). Security
+problems: [SECURITY.md](SECURITY.md).
+
+## License
+
+[MIT](LICENSE)

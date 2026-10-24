@@ -2,6 +2,8 @@
 name = "usage-meter"
 version = "0.1.1"
 description = "Claude and ChatGPT plan limits in the menu bar / tray"
+license = "MIT"
+repository = "https://github.com/nealwebdev/usage-meter"
 edition = "2021"
 
 [lib]
