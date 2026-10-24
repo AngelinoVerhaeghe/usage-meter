@@ -91,10 +91,22 @@ Plakken: **rechtsklik** in het venster (of **Ctrl + V**), daarna **Enter**.
    irm https://claude.ai/install.ps1 | iex
    ```
 
-2. Als het klaar is: **sluit PowerShell en open het opnieuw** (stap 1).
-3. Typ `claude` en druk op Enter. Je browser opent: **meld je aan met je
+2. Kijk naar de tekst die verschijnt. Staat er onderaan **Setup notes** met
+   *"is not in your PATH"*? Plak dan ook deze regel en druk op Enter. Je ziet
+   niets gebeuren, dat is normaal.
+
+   ```
+   [Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";$env:USERPROFILE\.local\bin", "User")
+   ```
+
+3. **Sluit PowerShell en open het opnieuw** (stap 1).
+4. Typ `claude` en druk op Enter. Je browser opent: **meld je aan met je
    Claude-account**.
-4. Terug in PowerShell: typ `/exit` en druk op Enter.
+
+   Krijg je rode tekst met *"not recognized"* of *"niet herkend"*? Plak dan
+   alsnog de lange regel uit 2, druk op Enter en ga verder bij 3.
+
+5. Terug in PowerShell: typ `/exit` en druk op Enter.
 
 ### Stap 3: ChatGPT verbinden (sla over als je ChatGPT niet gebruikt)
 

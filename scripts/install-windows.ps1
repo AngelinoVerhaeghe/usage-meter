@@ -7,22 +7,37 @@
 $ErrorActionPreference = "Stop"
 $repo = if ($env:USAGE_METER_REPO) { $env:USAGE_METER_REPO } else { "nealwebdev/usage-meter" }
 
-$release = Invoke-RestMethod "https://api.github.com/repos/$repo/releases/latest"
-$asset = $release.assets | Where-Object { $_.name -like "*-setup.exe" } | Select-Object -First 1
-if (-not $asset) { throw "No Windows build found in the latest release of $repo" }
+# Antivirus such as Norton often blocks or removes the unsigned installer while
+# it downloads ("access denied"). Show what to do instead of a red error.
+try {
+  $release = Invoke-RestMethod "https://api.github.com/repos/$repo/releases/latest"
+  $asset = $release.assets | Where-Object { $_.name -like "*-setup.exe" } | Select-Object -First 1
+  if (-not $asset) { throw "No Windows build found in the latest release of $repo" }
 
-$file = Join-Path $env:TEMP $asset.name
-Write-Host "Downloading Usage Meter..."
-Invoke-WebRequest $asset.browser_download_url -OutFile $file -UseBasicParsing
-Unblock-File $file
+  $file = Join-Path $env:TEMP $asset.name
+  Write-Host "Downloading Usage Meter..."
+  Invoke-WebRequest $asset.browser_download_url -OutFile $file -UseBasicParsing
+  Unblock-File $file
 
-Get-Process | Where-Object { $_.Path -like "*\Usage Meter\*" } | Stop-Process -Force -ErrorAction SilentlyContinue
-Start-Process $file -ArgumentList "/S" -Wait
-Remove-Item $file -ErrorAction SilentlyContinue
+  Get-Process | Where-Object { $_.Path -like "*\Usage Meter\*" } | Stop-Process -Force -ErrorAction SilentlyContinue
+  Start-Process $file -ArgumentList "/S" -Wait
 
-$exe = Get-ChildItem (Join-Path $env:LOCALAPPDATA "Usage Meter") -Filter *.exe -ErrorAction SilentlyContinue |
-  Where-Object { $_.Name -notlike "uninstall*" } | Select-Object -First 1
-if ($exe) { Start-Process $exe.FullName }
-Write-Host ""
-Write-Host "Done! Usage Meter is in the tray next to the clock (bottom right)."
-Write-Host "Don't see it? Click the ^ arrow next to the clock. You can close this window now."
+  $exe = Get-ChildItem (Join-Path $env:LOCALAPPDATA "Usage Meter") -Filter *.exe -ErrorAction SilentlyContinue |
+    Where-Object { $_.Name -notlike "uninstall*" } | Select-Object -First 1
+  if ($exe) { Start-Process $exe.FullName }
+  Write-Host ""
+  Write-Host "Done! Usage Meter is in the tray next to the clock (bottom right)."
+  Write-Host "Don't see it? Click the ^ arrow next to the clock. You can close this window now."
+} catch {
+  Write-Host ""
+  Write-Host "Usage Meter could not be installed. This is usually your antivirus" -ForegroundColor Yellow
+  Write-Host "(for example Norton) blocking the download, or no internet connection." -ForegroundColor Yellow
+  Write-Host ""
+  Write-Host "Install it by hand instead:"
+  Write-Host "  1. Open https://github.com/$repo/releases/latest"
+  Write-Host "  2. Download the file ending in -setup.exe and double-click it."
+  Write-Host ""
+  Write-Host "(Details: $($_.Exception.Message))" -ForegroundColor DarkGray
+} finally {
+  if ($file) { Remove-Item $file -ErrorAction SilentlyContinue }
+}

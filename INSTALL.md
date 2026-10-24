@@ -89,10 +89,22 @@ To paste: **right-click** in the window (or **Ctrl + V**), then press **Enter**.
    irm https://claude.ai/install.ps1 | iex
    ```
 
-2. When it's done, **close PowerShell and open it again** (step 1).
-3. Type `claude` and press Enter. Your browser opens: **sign in with your
+2. Look at the text that appears. Does it end with **Setup notes** saying
+   *"is not in your PATH"*? Then also paste this line and press Enter.
+   Nothing seems to happen; that's normal.
+
+   ```
+   [Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";$env:USERPROFILE\.local\bin", "User")
+   ```
+
+3. **Close PowerShell and open it again** (step 1).
+4. Type `claude` and press Enter. Your browser opens: **sign in with your
    Claude account**.
-4. Back in PowerShell, type `/exit` and press Enter.
+
+   Red text saying *"not recognized"*? Paste the long line from 2 anyway,
+   press Enter and continue at 3.
+
+5. Back in PowerShell, type `/exit` and press Enter.
 
 ### Step 3: Connect ChatGPT (skip if you don't use ChatGPT)
 
