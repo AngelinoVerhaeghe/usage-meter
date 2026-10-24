@@ -1,0 +1,12 @@
+# Reviewed advisories for `cargo audit`.
+[advisories]
+ignore = [
+  # zip 4.x (via tauri-plugin-updater 2.14, no fixed release yet): unsafe
+  # permissions/symlinks when extracting an attacker-supplied archive. The
+  # updater only unpacks downloads whose signature matches our public key, and
+  # our macOS (.tar.gz) and Windows (NSIS .exe) updates aren't zip files.
+  # Remove these once the updater moves to zip >= 9.
+  "RUSTSEC-2026-0367",
+  "RUSTSEC-2026-0368",
+  "RUSTSEC-2026-0369",
+]

@@ -1,0 +1,266 @@
+// UI text in English and Dutch. Add a language: copy the `en` block, translate
+// it, add it to DICTS and to the language picker in main.ts (LANGS).
+
+export type Lang = "en" | "nl";
+
+const en = {
+  updatedNow: "updated just now",
+  updatedMin: "updated {n} min ago",
+  updatedHours: "updated {n} h ago",
+  agoMin: "{n} min ago",
+  agoHours: "{n} h ago",
+  justNow: "just now",
+  loading: "Loading…",
+  refreshNow: "Refresh now",
+  week: "Week",
+  codexWeek: "Codex week",
+  resets: "resets {t}",
+  inMin: "in {m} min",
+  inHours: "in {h} h {m} min",
+  h5: "5h",
+  session5h: "5h session",
+  weekly: "Weekly",
+  windowHours: "{n}h window",
+  modelWeek: "{model} week",
+  model5h: "{model} 5h",
+  max: "MAX",
+  blockedUntil: "Blocked until {t} · other models OK",
+  sessionsModelLimits: "Sessions & model limits",
+  headsUp: "Heads up",
+  forecast: "At this pace {name}'s weekly limit runs out <b>{t}</b>",
+  details: "Details",
+  settings: "Settings",
+  quit: "Quit",
+  updateReady: "Version {v} is ready",
+  restart: "Restart",
+  byModel: "By model",
+  onThisComputer: "{source} on this computer",
+  colModel: "Model",
+  colLast5h: "Last 5 h",
+  colThisWeek: "This week",
+  limitHit: "limit hit {t}",
+  unit_msgs: "msgs",
+  unit_msg: "msg",
+  unit_turns: "turns",
+  unit_turn: "turn",
+  unit_out: "out",
+  unit_tok: "tok",
+  connectClaude: "Install Claude Code and sign in once: run <code>claude</code>",
+  connectCodex: "Install Codex and sign in once: run <code>codex login</code>",
+  reusesLogin: "Usage Meter reuses that login and never sees your password.",
+  allAvailable: "All models available",
+  allBlocked: "All models blocked",
+  allBlockedUntil: "All models blocked until {t}",
+  someBlocked: "{names} blocked until {t} · other models OK",
+  lastGood: "last good numbers {age}",
+  openUsageClaude: "Open claude.ai usage page",
+  openUsageCodex: "Open ChatGPT usage page",
+  appearance: "Appearance",
+  themeSystem: "System",
+  themeLight: "Light",
+  themeDark: "Dark",
+  themeHintSystem: "Follows your Mac or Windows setting.",
+  themeHintLight: "Always light.",
+  themeHintDark: "Always dark.",
+  language: "Language",
+  languageSystem: "System",
+  languageHintSystem: "Follows your computer's language.",
+  general: "General",
+  openAtLogin: "Open at login",
+  checkEvery: "Check usage every",
+  minutes: "{n} minutes",
+  alerts: "Alerts",
+  warnAt: "Warn me at",
+  off: "off",
+  whenReached: "When a limit is reached",
+  whenResets: "When a limit resets",
+  accounts: "Accounts",
+  connected: "Connected",
+  notConnected: "Not connected",
+  privacy:
+    "Usage Meter reuses the Claude Code and Codex logins on this computer. Only usage numbers are read, never chats, and nothing leaves this computer except the calls to Claude and ChatGPT.",
+  checkUpdates: "Check for updates",
+  checking: "checking…",
+  upToDate: "up to date",
+  updateFailed: "couldn't check for updates",
+  downloading: "downloading {v}…",
+  readyRestart: "{v} ready, restart to finish",
+  // Values the readers send, translated by phrase.
+  "Extra usage": "Extra usage",
+  Credits: "Credits",
+  "Limit resets": "Limit resets",
+  "Spend control": "Spend control",
+  "Code review": "Code review",
+  none: "none",
+  available: "available",
+  unavailable: "unavailable",
+  unavailableUntil: "unavailable until {t}",
+  unlimited: "unlimited",
+  "limit reached": "limit reached",
+  "credits would unlock it": "credits would unlock it",
+  balance: "balance {n}",
+  approxMessages: "~{n} messages",
+  countAvailable: "{n} available",
+  usedOf: "{x} of {y} {cur} used",
+  used: "{x} {cur} used",
+  "workspace out of credits": "workspace out of credits",
+  "network unreachable": "network unreachable",
+  "unexpected response": "unexpected response",
+  loginRejected: "HTTP {code} (login rejected)",
+  rateLimited: "Rate limited, next try {t}",
+  "Login expired. Open Claude Code once to renew it.": "Login expired. Open Claude Code once to renew it.",
+  "can't read the Claude Code login": "can't read the Claude Code login",
+  fromLastSession: "From the last Codex session (live: {e})",
+};
+
+type Dict = typeof en;
+
+const nl: Dict = {
+  updatedNow: "zojuist bijgewerkt",
+  updatedMin: "{n} min geleden bijgewerkt",
+  updatedHours: "{n} uur geleden bijgewerkt",
+  agoMin: "{n} min geleden",
+  agoHours: "{n} uur geleden",
+  justNow: "zojuist",
+  loading: "Laden…",
+  refreshNow: "Nu vernieuwen",
+  week: "Week",
+  codexWeek: "Codex-week",
+  resets: "reset {t}",
+  inMin: "over {m} min",
+  inHours: "over {h} u {m} min",
+  h5: "5u",
+  session5h: "5u-sessie",
+  weekly: "Wekelijks",
+  windowHours: "{n}u-venster",
+  modelWeek: "{model} week",
+  model5h: "{model} 5u",
+  max: "MAX",
+  blockedUntil: "Geblokkeerd tot {t} · andere modellen OK",
+  sessionsModelLimits: "Sessies & modellimieten",
+  headsUp: "Let op",
+  forecast: "In dit tempo is de weeklimiet van {name} op rond <b>{t}</b>",
+  details: "Details",
+  settings: "Instellingen",
+  quit: "Stoppen",
+  updateReady: "Versie {v} staat klaar",
+  restart: "Herstarten",
+  byModel: "Per model",
+  onThisComputer: "{source} op deze computer",
+  colModel: "Model",
+  colLast5h: "Laatste 5 u",
+  colThisWeek: "Deze week",
+  limitHit: "limiet bereikt {t}",
+  unit_msgs: "ber.",
+  unit_msg: "ber.",
+  unit_turns: "beurten",
+  unit_turn: "beurt",
+  unit_out: "uit",
+  unit_tok: "tok",
+  connectClaude: "Installeer Claude Code en meld je één keer aan: voer <code>claude</code> uit",
+  connectCodex: "Installeer Codex en meld je één keer aan: voer <code>codex login</code> uit",
+  reusesLogin: "Usage Meter gebruikt die login en ziet nooit je wachtwoord.",
+  allAvailable: "Alle modellen beschikbaar",
+  allBlocked: "Alle modellen geblokkeerd",
+  allBlockedUntil: "Alle modellen geblokkeerd tot {t}",
+  someBlocked: "{names} geblokkeerd tot {t} · andere modellen OK",
+  lastGood: "laatste goede cijfers {age}",
+  openUsageClaude: "Gebruikspagina van claude.ai openen",
+  openUsageCodex: "Gebruikspagina van ChatGPT openen",
+  appearance: "Weergave",
+  themeSystem: "Systeem",
+  themeLight: "Licht",
+  themeDark: "Donker",
+  themeHintSystem: "Volgt de instelling van je Mac of Windows.",
+  themeHintLight: "Altijd licht.",
+  themeHintDark: "Altijd donker.",
+  language: "Taal",
+  languageSystem: "Systeem",
+  languageHintSystem: "Volgt de taal van je computer.",
+  general: "Algemeen",
+  openAtLogin: "Openen bij inloggen",
+  checkEvery: "Gebruik controleren elke",
+  minutes: "{n} minuten",
+  alerts: "Meldingen",
+  warnAt: "Waarschuw me bij",
+  off: "uit",
+  whenReached: "Als een limiet bereikt is",
+  whenResets: "Als een limiet gereset is",
+  accounts: "Accounts",
+  connected: "Verbonden",
+  notConnected: "Niet verbonden",
+  privacy:
+    "Usage Meter gebruikt de logins van Claude Code en Codex op deze computer. Alleen gebruikscijfers worden gelezen, nooit gesprekken, en er verlaat niets deze computer behalve de oproepen naar Claude en ChatGPT.",
+  checkUpdates: "Zoeken naar updates",
+  checking: "zoeken…",
+  upToDate: "up-to-date",
+  updateFailed: "kon niet zoeken naar updates",
+  downloading: "{v} downloaden…",
+  readyRestart: "{v} klaar, herstart om af te ronden",
+  "Extra usage": "Extra gebruik",
+  Credits: "Tegoed",
+  "Limit resets": "Limietresets",
+  "Spend control": "Uitgavenlimiet",
+  "Code review": "Codereview",
+  none: "geen",
+  available: "beschikbaar",
+  unavailable: "niet beschikbaar",
+  unavailableUntil: "niet beschikbaar tot {t}",
+  unlimited: "onbeperkt",
+  "limit reached": "limiet bereikt",
+  "credits would unlock it": "tegoed zou het vrijgeven",
+  balance: "saldo {n}",
+  approxMessages: "~{n} berichten",
+  countAvailable: "{n} beschikbaar",
+  usedOf: "{x} van {y} {cur} gebruikt",
+  used: "{x} {cur} gebruikt",
+  "workspace out of credits": "workspace heeft geen tegoed meer",
+  "network unreachable": "geen netwerk",
+  "unexpected response": "onverwacht antwoord",
+  loginRejected: "HTTP {code} (login geweigerd)",
+  rateLimited: "Te vaak opgevraagd, volgende poging {t}",
+  "Login expired. Open Claude Code once to renew it.": "Login verlopen. Open Claude Code één keer om ze te vernieuwen.",
+  "can't read the Claude Code login": "kan de login van Claude Code niet lezen",
+  fromLastSession: "Uit de laatste Codex-sessie (live: {e})",
+};
+
+const DICTS: Record<Lang, Dict> = { en, nl };
+export type Key = keyof Dict;
+
+let current: Lang = "en";
+
+/** "system" follows the computer's language; anything we don't have falls back to English. */
+export function resolveLang(setting: string): Lang {
+  const wanted = setting === "system" ? navigator.language : setting;
+  return wanted.toLowerCase().startsWith("nl") ? "nl" : "en";
+}
+
+export function setLang(lang: Lang) {
+  current = lang;
+  document.documentElement.lang = lang;
+}
+
+export const lang = () => current;
+export const locale = () => (current === "nl" ? "nl-NL" : "en-GB");
+
+export function t(key: Key, vars: Record<string, string | number> = {}): string {
+  const text = DICTS[current][key] ?? en[key] ?? key;
+  return text.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ""));
+}
+
+/** Translate a phrase the Rust readers send, if we know it; otherwise show it as is. */
+export function phrase(text: string): string {
+  if (text in en) return t(text as Key);
+  // "unavailable · credits would unlock it": translate each part
+  if (text.includes(" · ") && !text.startsWith("From the last")) return text.split(" · ").map(phrase).join(" · ");
+  let m: RegExpMatchArray | null;
+  if ((m = text.match(/^balance (.+)$/))) return t("balance", { n: m[1] });
+  if ((m = text.match(/^~(\d+) messages$/))) return t("approxMessages", { n: m[1] });
+  if ((m = text.match(/^(\d+) available$/))) return t("countAvailable", { n: m[1] });
+  if ((m = text.match(/^([\d.,]+) of ([\d.,]+) ?(\w*) used$/))) return t("usedOf", { x: m[1], y: m[2], cur: m[3] });
+  if ((m = text.match(/^([\d.,]+) ?(\w*) used$/))) return t("used", { x: m[1], cur: m[2] });
+  if ((m = text.match(/^HTTP (\d+) \(login rejected\)$/))) return t("loginRejected", { code: m[1] });
+  if ((m = text.match(/^Rate limited, next try (.+)$/))) return t("rateLimited", { t: m[1] });
+  if ((m = text.match(/^From the last Codex session \(live: (.+)\)$/))) return t("fromLastSession", { e: phrase(m[1]) });
+  return text;
+}
