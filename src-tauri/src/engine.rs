@@ -43,6 +43,7 @@ pub struct Engine {
     client: reqwest::Client,
     running: tokio::sync::Mutex<()>,
     state_path: Option<PathBuf>,
+    first_run: bool,
 }
 
 impl Engine {
@@ -84,6 +85,7 @@ impl Engine {
             client,
             running: tokio::sync::Mutex::new(()),
             state_path,
+            first_run,
         })
     }
 
@@ -99,6 +101,8 @@ impl Engine {
             let client = self.client.clone();
             async move {
                 // Backing off after a rate limit wins, even on a manual refresh.
+                // Looking for a new login is local, so a click always does that.
+                let interval = if force && !acc.connected { 0.0 } else { interval };
                 if now < acc.retry_at || now - acc.tried_at < interval {
                     return acc;
                 }
@@ -269,9 +273,14 @@ fn apply(mut acc: Account, result: Result<Reading, FetchError>, now: f64) -> Acc
 /// Refresh every minute; each service is only called when it's due.
 pub fn start(app: AppHandle, engine: Arc<Engine>) {
     tauri::async_runtime::spawn(async move {
+        engine.refresh(&app, false).await;
+        // Installed before Claude Code or Codex: open the welcome screen once.
+        if engine.first_run && engine.snapshot.lock().unwrap().accounts.iter().all(|a| !a.connected) {
+            tray::show(&app);
+        }
         loop {
-            engine.refresh(&app, false).await;
             tokio::time::sleep(Duration::from_secs(60)).await;
+            engine.refresh(&app, false).await;
         }
     });
 }

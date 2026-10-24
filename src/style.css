@@ -179,3 +179,14 @@ input[type="range"] { width: 100%; accent-color: var(--amber); margin: 0; }
 .link { border: 0; background: none; padding: 0; color: var(--text2); text-decoration: underline; font-size: 12px; }
 .link:hover { color: var(--text); }
 code { font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: 11px; background: var(--field); padding: 1px 5px; border-radius: 4px; }
+
+/* welcome, shown while nothing is signed in */
+.welcome h1 { margin: 0; font-size: 21px; line-height: 1.2; font-weight: 750; letter-spacing: -0.01em; }
+.welcome p { margin: 6px 0 0; font-size: 12px; line-height: 1.5; }
+.setup { background: var(--tile); border: 1px solid var(--line); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.cmd { display: flex; gap: 6px; align-items: center; }
+.cmd code { flex: 1; min-width: 0; padding: 6px 8px; border-radius: 6px; white-space: nowrap; overflow-x: auto; user-select: text; cursor: text; }
+.copy { flex: none; border: 1px solid var(--line); background: var(--panel); border-radius: 7px; padding: 5px 9px; font-size: 11px; font-weight: 650; min-width: 72px; }
+.btn-primary { height: 40px; border: 0; border-radius: 10px; background: var(--primary); color: var(--on-primary); font-weight: 700; font-size: 13px; flex: none; }
+.btn-primary.busy { opacity: 0.6; }
+.welcome .links { display: flex; justify-content: space-between; }
