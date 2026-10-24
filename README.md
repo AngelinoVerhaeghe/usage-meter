@@ -6,6 +6,17 @@ per-model activity from Claude Code and Codex. Alerts at 80% (configurable),
 when a limit is hit and when it resets. Light, dark or follow the system;
 English or Dutch, or follow the system language.
 
+<p align="center">
+  <img src="docs/images/popover-mac-dark.png" width="300" alt="Mac menu bar popover, dark">
+  <img src="docs/images/popover-mac-light.png" width="300" alt="Mac menu bar popover, light">
+  <img src="docs/images/popover-windows-light.png" width="300" alt="Windows tray popover">
+</p>
+<p align="center">
+  <img src="docs/images/details-dark.png" width="600" alt="Details view with per-model limits and activity">
+</p>
+
+<sub>Design mockups with sample numbers; the app shows your own.</sub>
+
 Translations live in `src/i18n.ts` (the window) and `src-tauri/src/i18n.rs`
 (notifications and the tray menu). To add a language, copy the `en` block in
 `src/i18n.ts`, add it to `LANGS` in `src/main.ts`, and add its texts to `i18n.rs`.
