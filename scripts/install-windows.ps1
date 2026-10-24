@@ -9,6 +9,7 @@ $repo = if ($env:USAGE_METER_REPO) { $env:USAGE_METER_REPO } else { "nealwebdev/
 
 # Antivirus such as Norton often blocks or removes the unsigned installer while
 # it downloads ("access denied"). Show what to do instead of a red error.
+$file = $null # this runs in the caller's session: never clean up a $file from before
 try {
   $release = Invoke-RestMethod "https://api.github.com/repos/$repo/releases/latest"
   $asset = $release.assets | Where-Object { $_.name -like "*-setup.exe" } | Select-Object -First 1

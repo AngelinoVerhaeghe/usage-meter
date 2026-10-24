@@ -37,7 +37,8 @@ const IS_WINDOWS = navigator.userAgent.includes("Windows");
 const SETUP: Record<Account["kind"], { install: string; signIn: string }> = {
   claude: {
     install: IS_WINDOWS ? "irm https://claude.ai/install.ps1 | iex" : "curl -fsSL https://claude.ai/install.sh | bash",
-    signIn: "claude",
+    // The Windows installer can leave its folder off PATH, so call it by its full path.
+    signIn: IS_WINDOWS ? '& "$env:USERPROFILE\\.local\\bin\\claude.exe"' : "claude",
   },
   codex: {
     install: IS_WINDOWS ? "npm install -g @openai/codex" : "brew install --cask codex",
